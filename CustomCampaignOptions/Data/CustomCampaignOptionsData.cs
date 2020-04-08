@@ -1,4 +1,3 @@
-using System;
 using TaleWorlds.SaveSystem;
 
 namespace CustomCampaignOptions.Data

@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using CustomCampaignOptions.Behaviours;
 using CustomCampaignOptions.Data;
 using TaleWorlds.CampaignSystem;
