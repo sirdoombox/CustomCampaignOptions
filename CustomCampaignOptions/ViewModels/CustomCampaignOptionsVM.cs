@@ -19,7 +19,7 @@ namespace CustomCampaignOptions.ViewModels
 
         [DataSourceProperty] public float SliderFloatMaxValue => 200f;
 
-        [DataSourceProperty] public float SliderXpFloatMaxValue => 1000f;
+        [DataSourceProperty] public float SliderXpFloatMaxValue => 500f;
 
         [DataSourceProperty] public float SliderIntMinValue => 0f;
 
@@ -28,7 +28,9 @@ namespace CustomCampaignOptions.ViewModels
         #endregion
 
         #region TitleText
+
         private string m_titleText;
+
         [DataSourceProperty]
         public string TitleText
         {
@@ -41,133 +43,182 @@ namespace CustomCampaignOptions.ViewModels
                 OnPropertyChanged(nameof(TitleText));
             }
         }
+
         #endregion
 
         #region TroopsReceivedDamage
+
         private float m_playerTroopsReceivedDamage;
-        private string m_playerTroopsReceivedDamageString;
+
         [DataSourceProperty]
         public float PlayerTroopsReceivedDamage
         {
             get => m_playerTroopsReceivedDamage;
             set
             {
-                m_playerTroopsReceivedDamage = value;
-                m_playerTroopsReceivedDamageString =
-                    $"Player Troops Received Damage: {m_playerTroopsReceivedDamage:0}%";
-                OnPropertyChanged(nameof(PlayerTroopsReceivedDamage));
+                SetField(ref m_playerTroopsReceivedDamage, value, nameof(PlayerTroopsReceivedDamage));
+                PlayerTroopsReceivedDamageString = $"Player Troops Received Damage: {m_playerTroopsReceivedDamage:0}%";
                 OnPropertyChanged(nameof(PlayerTroopsReceivedDamageString));
-                if (m_optionData is null) return;
-                m_optionData.m_playerTroopsReceivedDamage = value;
+                m_optionData.m_playerTroopsReceivedDamage = m_playerTroopsReceivedDamage;
             }
         }
-        [DataSourceProperty]
-        public string PlayerTroopsReceivedDamageString => m_playerTroopsReceivedDamageString;
+
+        [DataSourceProperty] public string PlayerTroopsReceivedDamageString { get; private set; }
+
         #endregion
 
         #region PlayerFriendsReceivedDamage
+
         private float m_playerFriendsReceivedDamage;
-        private string m_playerFriendsReceivedDamageString;
+
         [DataSourceProperty]
         public float PlayerFriendsReceivedDamage
         {
             get => m_playerFriendsReceivedDamage;
             set
             {
-                m_playerFriendsReceivedDamage = value;
-                m_playerFriendsReceivedDamageString =
+                SetField(ref m_playerFriendsReceivedDamage, value, nameof(PlayerFriendsReceivedDamage));
+                PlayerFriendsReceivedDamageString =
                     $"Friendly Parties Received Damage: {m_playerFriendsReceivedDamage:0}%";
-                OnPropertyChanged(nameof(PlayerFriendsReceivedDamage));
                 OnPropertyChanged(nameof(PlayerFriendsReceivedDamageString));
-                if (m_optionData is null) return;
-                m_optionData.m_playerFriendsReceivedDamage = value;
+                m_optionData.m_playerFriendsReceivedDamage = m_playerFriendsReceivedDamage;
             }
         }
-        [DataSourceProperty]
-        public string PlayerFriendsReceivedDamageString => m_playerFriendsReceivedDamageString;
+
+        [DataSourceProperty] public string PlayerFriendsReceivedDamageString { get; private set; }
+
         #endregion
 
         #region PlayerReceivedDamage
+
         private float m_playerReceiveDamage;
-        private string m_playerReceiveDamageString;
+
         [DataSourceProperty]
         public float PlayerReceiveDamage
         {
             get => m_playerReceiveDamage;
             set
             {
-                m_playerReceiveDamage = value;
-                m_playerReceiveDamageString = $"Player Received Damage: {m_playerReceiveDamage:0}%";
-                OnPropertyChanged(nameof(PlayerReceiveDamage));
+                SetField(ref m_playerReceiveDamage, value, nameof(PlayerReceiveDamage));
+                PlayerReceiveDamageString = $"Player Received Damage: {m_playerReceiveDamage:0}%";
                 OnPropertyChanged(nameof(PlayerReceiveDamageString));
-                if (m_optionData is null) return;
-                m_optionData.m_playerReceiveDamage = value;
+                m_optionData.m_playerReceiveDamage = m_playerReceiveDamage;
             }
         }
-        [DataSourceProperty]
-        public string PlayerReceiveDamageString => m_playerReceiveDamageString;
+
+        [DataSourceProperty] public string PlayerReceiveDamageString { get; private set; }
+
         #endregion
 
         #region MaximumIndexPlayerCanRecruit
+
         private int m_maximumIndexPlayerCanRecruit;
-        private string m_maximumIndexPlayerCanRecruitString;
+
         [DataSourceProperty]
         public float MaximumIndexPlayerCanRecruit
         {
             get => m_maximumIndexPlayerCanRecruit;
             set
             {
-                m_maximumIndexPlayerCanRecruit = (int)Math.Round(value);
-                m_maximumIndexPlayerCanRecruitString =
-                    $"Recruitable Troops: {m_maximumIndexPlayerCanRecruit} extra";
+                m_maximumIndexPlayerCanRecruit = (int) Math.Round(value);
                 OnPropertyChanged(nameof(MaximumIndexPlayerCanRecruit));
+                MaximumIndexPlayerCanRecruitString = $"Recruitable Troops: {m_maximumIndexPlayerCanRecruit} extra";
                 OnPropertyChanged(nameof(MaximumIndexPlayerCanRecruitString));
-                if (m_optionData is null) return;
                 m_optionData.m_maximumIndexPlayerCanRecruit = m_maximumIndexPlayerCanRecruit;
             }
         }
-        [DataSourceProperty]
-        public string MaximumIndexPlayerCanRecruitString => m_maximumIndexPlayerCanRecruitString;
+
+        [DataSourceProperty] public string MaximumIndexPlayerCanRecruitString { get; private set; }
+
         #endregion
-        
+
         #region PlayerMapMovementSpeed
+
         private float m_playerMapMovementSpeed;
+
         [DataSourceProperty]
         public float PlayerMapMovementSpeed
         {
             get => m_playerMapMovementSpeed;
             set
             {
-                m_playerMapMovementSpeed = value;
+                SetField(ref m_playerMapMovementSpeed, value, nameof(PlayerMapMovementSpeed));
                 PlayerMapMovementSpeedString = $"Bonus Map Movement Speed: {m_playerMapMovementSpeed:0}%";
-                OnPropertyChanged(nameof(PlayerMapMovementSpeed));
                 OnPropertyChanged(nameof(PlayerMapMovementSpeedString));
-                if (m_optionData is null) return;
-                m_optionData.m_playerMapMovementSpeed = value;
+                m_optionData.m_playerMapMovementSpeed = m_playerMapMovementSpeed;
+                typeof(MobileParty)
+                    .GetField("_partyPureSpeedLastCheckVersion", System.Reflection.BindingFlags.NonPublic 
+                                                                 | System.Reflection.BindingFlags.Instance)
+                    ?.SetValue(MobileParty.MainParty, -1);
+                MobileParty.MainParty.ComputeSpeed();
             }
         }
-        [DataSourceProperty]
-        public string PlayerMapMovementSpeedString { get; private set; }
+
+        [DataSourceProperty] public string PlayerMapMovementSpeedString { get; private set; }
+
         #endregion
-        
+
         #region PlayerXp
+
         private float m_playerXp;
+
         [DataSourceProperty]
         public float PlayerXp
         {
             get => m_playerXp;
             set
             {
-                m_playerXp = value;
+                SetField(ref m_playerXp, value, nameof(PlayerXp));
                 PlayerXpString = $"Player Experience: {m_playerXp:0}%";
-                OnPropertyChanged(nameof(PlayerXp));
                 OnPropertyChanged(nameof(PlayerXpString));
-                if (m_optionData is null) return;
-                m_optionData.m_playerXp = value;
+                m_optionData.m_playerXp = m_playerXp;
             }
         }
+
+        [DataSourceProperty] public string PlayerXpString { get; private set; }
+
+        #endregion
+
+        #region TroopXp
+
+        private float m_troopXp;
+
         [DataSourceProperty]
-        public string PlayerXpString { get; private set; }
+        public float TroopXp
+        {
+            get => m_troopXp;
+            set
+            {
+                SetField(ref m_troopXp, value, nameof(TroopXp));
+                TroopXpString = $"Troop XP: {m_troopXp:0}%";
+                OnPropertyChanged(nameof(TroopXpString));
+                m_optionData.m_troopXp = m_troopXp;
+            }
+        }
+
+        [DataSourceProperty] public string TroopXpString { get; private set; }
+
+        #endregion
+
+        #region Wages
+
+        private float m_wages;
+
+        [DataSourceProperty]
+        public float Wages
+        {
+            get => m_wages;
+            set
+            {
+                SetField(ref m_wages, value, nameof(Wages));
+                WagesString = $"Player Party Wages: {m_wages:0}%";
+                OnPropertyChanged(nameof(WagesString));
+                m_optionData.m_wages = m_wages;
+            }
+        }
+
+        [DataSourceProperty] public string WagesString { get; private set; }
+
         #endregion
 
         #region IsDeathEnabled
@@ -180,9 +231,8 @@ namespace CustomCampaignOptions.ViewModels
             get => m_isDeathEnabled;
             set
             {
-                m_isDeathEnabled = value;
-                OnPropertyChanged(nameof(IsDeathEnabled));
-                CampaignOptions.IsDeathEnabled = value;
+                SetField(ref m_isDeathEnabled, value, nameof(IsDeathEnabled));
+                CampaignOptions.IsDeathEnabled = m_isDeathEnabled;
             }
         }
 
@@ -191,15 +241,15 @@ namespace CustomCampaignOptions.ViewModels
         #region AutoAllocateClanMemberPerks
 
         private bool m_autoAllocateClanMemberPerks;
+
         [DataSourceProperty]
         public bool AutoAllocateClanMemberPerks
         {
             get => m_autoAllocateClanMemberPerks;
             set
             {
-                m_autoAllocateClanMemberPerks = value;
-                OnPropertyChanged(nameof(AutoAllocateClanMemberPerks));
-                CampaignOptions.AutoAllocateClanMemberPerks = value;
+                SetField(ref m_autoAllocateClanMemberPerks, value, nameof(AutoAllocateClanMemberPerks));
+                CampaignOptions.AutoAllocateClanMemberPerks = m_autoAllocateClanMemberPerks;
             }
         }
 
@@ -221,6 +271,8 @@ namespace CustomCampaignOptions.ViewModels
             MaximumIndexPlayerCanRecruit = m_optionData.m_maximumIndexPlayerCanRecruit;
             PlayerMapMovementSpeed = m_optionData.m_playerMapMovementSpeed;
             PlayerXp = m_optionData.m_playerXp;
+            TroopXp = m_optionData.m_troopXp;
+            Wages = m_optionData.m_wages;
             IsDeathEnabled = CampaignOptions.IsDeathEnabled;
             AutoAllocateClanMemberPerks = CampaignOptions.AutoAllocateClanMemberPerks;
         }

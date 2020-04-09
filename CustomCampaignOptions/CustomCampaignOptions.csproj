@@ -228,9 +228,13 @@
         <Compile Include="Behaviours\CustomCampaignOptionsBehaviour.cs" />
         <Compile Include="Data\CustomCampaignOptionsData.cs" />
         <Compile Include="Data\SaveableDataDefinition.cs" />
+        <Compile Include="GameModels\CustomizableCombatXpModel.cs" />
         <Compile Include="GameModels\CustomizableDifficultyModel.cs" />
         <Compile Include="GameModels\CustomizableGenericXpModel.cs" />
+        <Compile Include="GameModels\CustomizablePartyWageModel.cs" />
+        <Compile Include="GameModels\CustomizableStoryModeCombatXpModel.cs" />
         <Compile Include="GameModels\CustomizableStoryModeGenericXpModel.cs" />
+        <Compile Include="GameModels\CustomizableStoryModePartyWageModel.cs" />
         <Compile Include="Screens\CuztomizableCampaignOptions.cs" />
         <Compile Include="SubModule.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

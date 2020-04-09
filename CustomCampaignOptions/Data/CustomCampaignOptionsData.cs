@@ -10,5 +10,7 @@ namespace CustomCampaignOptions.Data
         [SaveableField(4)] public int m_maximumIndexPlayerCanRecruit = 0;
         [SaveableField(5)] public float m_playerMapMovementSpeed = 0f;
         [SaveableField(6)] public float m_playerXp = 100f;
+        [SaveableField(7)] public float m_troopXp = 100f;
+        [SaveableField(8)] public float m_wages = 100f;
     }
 }
