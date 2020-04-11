@@ -1,6 +1,5 @@
 using System;
 using CustomCampaignOptions.Behaviours;
-using CustomCampaignOptions.Data;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
 using TaleWorlds.Localization;
@@ -11,7 +10,7 @@ namespace CustomCampaignOptions.ViewModels
     {
         private readonly Action m_onClose;
 
-        private CustomCampaignOptionsData m_optionData => CustomCampaignOptionsBehaviour.m_optionsData;
+        private CustomCampaignOptionsBehaviour Options => CustomCampaignOptionsBehaviour.Instance;
 
         #region SliderMinMaxValues
 
@@ -59,7 +58,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_playerTroopsReceivedDamage, value, nameof(PlayerTroopsReceivedDamage));
                 PlayerTroopsReceivedDamageString = $"Player Troops Received Damage: {m_playerTroopsReceivedDamage:0}%";
                 OnPropertyChanged(nameof(PlayerTroopsReceivedDamageString));
-                m_optionData.m_playerTroopsReceivedDamage = m_playerTroopsReceivedDamage;
+                Options.PlayerTroopsReceivedDamage = m_playerTroopsReceivedDamage;
             }
         }
 
@@ -81,7 +80,7 @@ namespace CustomCampaignOptions.ViewModels
                 PlayerFriendsReceivedDamageString =
                     $"Friendly Parties Received Damage: {m_playerFriendsReceivedDamage:0}%";
                 OnPropertyChanged(nameof(PlayerFriendsReceivedDamageString));
-                m_optionData.m_playerFriendsReceivedDamage = m_playerFriendsReceivedDamage;
+                Options.PlayerFriendsReceivedDamage = m_playerFriendsReceivedDamage;
             }
         }
 
@@ -102,7 +101,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_playerReceiveDamage, value, nameof(PlayerReceiveDamage));
                 PlayerReceiveDamageString = $"Player Received Damage: {m_playerReceiveDamage:0}%";
                 OnPropertyChanged(nameof(PlayerReceiveDamageString));
-                m_optionData.m_playerReceiveDamage = m_playerReceiveDamage;
+                Options.PlayerReceiveDamage = m_playerReceiveDamage;
             }
         }
 
@@ -124,7 +123,7 @@ namespace CustomCampaignOptions.ViewModels
                 OnPropertyChanged(nameof(MaximumIndexPlayerCanRecruit));
                 MaximumIndexPlayerCanRecruitString = $"Recruitable Troops: {m_maximumIndexPlayerCanRecruit} extra";
                 OnPropertyChanged(nameof(MaximumIndexPlayerCanRecruitString));
-                m_optionData.m_maximumIndexPlayerCanRecruit = m_maximumIndexPlayerCanRecruit;
+                Options.MaximumIndexPlayerCanRecruit = m_maximumIndexPlayerCanRecruit;
             }
         }
 
@@ -145,7 +144,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_playerMapMovementSpeed, value, nameof(PlayerMapMovementSpeed));
                 PlayerMapMovementSpeedString = $"Bonus Map Movement Speed: {m_playerMapMovementSpeed:0}%";
                 OnPropertyChanged(nameof(PlayerMapMovementSpeedString));
-                m_optionData.m_playerMapMovementSpeed = m_playerMapMovementSpeed;
+                Options.PlayerMapMovementSpeed = m_playerMapMovementSpeed;
                 typeof(MobileParty)
                     .GetField("_partyPureSpeedLastCheckVersion", System.Reflection.BindingFlags.NonPublic 
                                                                  | System.Reflection.BindingFlags.Instance)
@@ -171,7 +170,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_playerXp, value, nameof(PlayerXp));
                 PlayerXpString = $"Player Experience: {m_playerXp:0}%";
                 OnPropertyChanged(nameof(PlayerXpString));
-                m_optionData.m_playerXp = m_playerXp;
+                Options.PlayerXp = m_playerXp;
             }
         }
 
@@ -192,7 +191,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_troopXp, value, nameof(TroopXp));
                 TroopXpString = $"Troop XP: {m_troopXp:0}%";
                 OnPropertyChanged(nameof(TroopXpString));
-                m_optionData.m_troopXp = m_troopXp;
+                Options.TroopXp = m_troopXp;
             }
         }
 
@@ -213,7 +212,7 @@ namespace CustomCampaignOptions.ViewModels
                 SetField(ref m_wages, value, nameof(Wages));
                 WagesString = $"Player Party Wages: {m_wages:0}%";
                 OnPropertyChanged(nameof(WagesString));
-                m_optionData.m_wages = m_wages;
+                Options.Wages = m_wages;
             }
         }
 
@@ -265,14 +264,14 @@ namespace CustomCampaignOptions.ViewModels
         {
             base.RefreshValues();
             TitleText = new TextObject("Custom Campaign Options").ToString();
-            PlayerTroopsReceivedDamage = m_optionData.m_playerTroopsReceivedDamage;
-            PlayerFriendsReceivedDamage = m_optionData.m_playerFriendsReceivedDamage;
-            PlayerReceiveDamage = m_optionData.m_playerReceiveDamage;
-            MaximumIndexPlayerCanRecruit = m_optionData.m_maximumIndexPlayerCanRecruit;
-            PlayerMapMovementSpeed = m_optionData.m_playerMapMovementSpeed;
-            PlayerXp = m_optionData.m_playerXp;
-            TroopXp = m_optionData.m_troopXp;
-            Wages = m_optionData.m_wages;
+            PlayerTroopsReceivedDamage = Options.PlayerTroopsReceivedDamage;
+            PlayerFriendsReceivedDamage = Options.PlayerFriendsReceivedDamage;
+            PlayerReceiveDamage = Options.PlayerReceiveDamage;
+            MaximumIndexPlayerCanRecruit =Options.MaximumIndexPlayerCanRecruit;
+            PlayerMapMovementSpeed = Options.PlayerMapMovementSpeed;
+            PlayerXp = Options.PlayerXp;
+            TroopXp = Options.TroopXp;
+            Wages = Options.Wages;
             IsDeathEnabled = CampaignOptions.IsDeathEnabled;
             AutoAllocateClanMemberPerks = CampaignOptions.AutoAllocateClanMemberPerks;
         }

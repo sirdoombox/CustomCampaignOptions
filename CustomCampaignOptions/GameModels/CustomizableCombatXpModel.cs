@@ -11,7 +11,7 @@ namespace CustomCampaignOptions.GameModels
             MissionTypeEnum missionType, out int xpAmount)
         {
             base.GetXpFromHit(attackerTroop, attackedTroop, damage, isFatal, missionType, out xpAmount);
-            xpAmount = (int)Math.Round(xpAmount * (CustomCampaignOptionsBehaviour.m_optionsData.m_troopXp / 100f));
+            xpAmount = (int)Math.Round(xpAmount * (CustomCampaignOptionsBehaviour.Instance.TroopXp / 100f));
         }
     }
 }

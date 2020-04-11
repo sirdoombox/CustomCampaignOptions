@@ -8,7 +8,7 @@ namespace CustomCampaignOptions.GameModels
         public override float GetXpMultiplier(Hero hero)
         {
             if(hero.IsHumanPlayerCharacter)
-                return CustomCampaignOptionsBehaviour.m_optionsData.m_playerXp / 100f;
+                return CustomCampaignOptionsBehaviour.Instance.PlayerXp / 100f;
             return 1f;
         }
     }

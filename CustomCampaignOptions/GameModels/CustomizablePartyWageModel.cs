@@ -11,7 +11,7 @@ namespace CustomCampaignOptions.GameModels
         {
             var totalWage = base.GetTotalWage(mobileParty, explanation);
             if (mobileParty.IsMainParty)
-                totalWage = (int)Math.Round(totalWage * (CustomCampaignOptionsBehaviour.m_optionsData.m_wages / 100f));
+                totalWage = (int)Math.Round(totalWage * (CustomCampaignOptionsBehaviour.Instance.Wages / 100f));
             return totalWage;
         }
     }

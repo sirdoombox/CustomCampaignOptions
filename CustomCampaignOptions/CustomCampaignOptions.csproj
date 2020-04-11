@@ -226,8 +226,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Behaviours\CustomCampaignOptionsBehaviour.cs" />
-        <Compile Include="Data\CustomCampaignOptionsData.cs" />
-        <Compile Include="Data\SaveableDataDefinition.cs" />
         <Compile Include="GameModels\CustomizableCombatXpModel.cs" />
         <Compile Include="GameModels\CustomizableDifficultyModel.cs" />
         <Compile Include="GameModels\CustomizableGenericXpModel.cs" />
