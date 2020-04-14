@@ -20,6 +20,8 @@ namespace CustomCampaignOptions.ViewModels
 
         [DataSourceProperty] public float SliderXpFloatMaxValue => 500f;
 
+        [DataSourceProperty] public float SliderAiDiffFloatMaxValue => 100f;
+
         [DataSourceProperty] public float SliderIntMinValue => 0f;
 
         [DataSourceProperty] public float SliderIntMaxValue => 10f;
@@ -45,6 +47,27 @@ namespace CustomCampaignOptions.ViewModels
 
         #endregion
 
+        #region CombatAIDifficulty
+
+        private float m_combatAIDifficulty;
+
+        [DataSourceProperty]
+        public float CombatAIDifficulty
+        {
+            get => m_combatAIDifficulty;
+            set
+            {
+                SetField(ref m_combatAIDifficulty, value, nameof(CombatAIDifficulty));
+                CombatAIDifficultyString = $"Combat AI Difficulty: {m_combatAIDifficulty:0}%";
+                OnPropertyChanged(nameof(CombatAIDifficultyString));
+                Options.CombatAIDifficulty = m_combatAIDifficulty;
+            }
+        }
+
+        [DataSourceProperty] public string CombatAIDifficultyString { get; private set; }
+
+        #endregion
+        
         #region TroopsReceivedDamage
 
         private float m_playerTroopsReceivedDamage;
@@ -264,10 +287,11 @@ namespace CustomCampaignOptions.ViewModels
         {
             base.RefreshValues();
             TitleText = new TextObject("Custom Campaign Options").ToString();
+            CombatAIDifficulty = Options.CombatAIDifficulty;
             PlayerTroopsReceivedDamage = Options.PlayerTroopsReceivedDamage;
             PlayerFriendsReceivedDamage = Options.PlayerFriendsReceivedDamage;
             PlayerReceiveDamage = Options.PlayerReceiveDamage;
-            MaximumIndexPlayerCanRecruit =Options.MaximumIndexPlayerCanRecruit;
+            MaximumIndexPlayerCanRecruit = Options.MaximumIndexPlayerCanRecruit;
             PlayerMapMovementSpeed = Options.PlayerMapMovementSpeed;
             PlayerXp = Options.PlayerXp;
             TroopXp = Options.TroopXp;

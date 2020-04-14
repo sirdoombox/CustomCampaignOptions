@@ -29,5 +29,10 @@ namespace CustomCampaignOptions.GameModels
         {
             return CustomCampaignOptionsBehaviour.Instance.PlayerMapMovementSpeed / 100f;
         }
+
+        public override float GetCombatAIDifficultyMultiplier()
+        {
+            return CustomCampaignOptionsBehaviour.Instance.CombatAIDifficulty / 100f;
+        }
     }
 }
