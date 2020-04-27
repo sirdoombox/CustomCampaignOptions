@@ -1,5 +1,4 @@
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.SaveSystem;
 
 namespace CustomCampaignOptions.Behaviours
 {

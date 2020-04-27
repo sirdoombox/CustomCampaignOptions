@@ -1,3 +1,4 @@
+using StoryMode.GameModels;
 using TaleWorlds.CampaignSystem;
 
 namespace CustomCampaignOptions.GameModels
