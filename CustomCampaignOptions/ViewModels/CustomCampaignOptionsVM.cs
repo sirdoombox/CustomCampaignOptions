@@ -1,4 +1,5 @@
 using System;
+using BannerLib.Gameplay.Extensions;
 using CustomCampaignOptions.Behaviours;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Library;
@@ -168,11 +169,7 @@ namespace CustomCampaignOptions.ViewModels
                 PlayerMapMovementSpeedString = $"Bonus Map Movement Speed: {m_playerMapMovementSpeed:0}%";
                 OnPropertyChanged(nameof(PlayerMapMovementSpeedString));
                 Options.PlayerMapMovementSpeed = m_playerMapMovementSpeed;
-                typeof(MobileParty)
-                    .GetField("_partyPureSpeedLastCheckVersion", System.Reflection.BindingFlags.NonPublic 
-                                                                 | System.Reflection.BindingFlags.Instance)
-                    ?.SetValue(MobileParty.MainParty, -1);
-                MobileParty.MainParty.ComputeSpeed();
+                MobileParty.MainParty.ForceComputeSpeed();
             }
         }
 
